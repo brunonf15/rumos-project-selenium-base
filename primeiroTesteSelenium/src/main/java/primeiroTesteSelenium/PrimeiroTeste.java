@@ -16,7 +16,6 @@ import org.junit.Test;
 public class PrimeiroTeste {
 
 	private final By searchInput = By.id("searchboxinput");
-	private WebElement wait;
 	private final By directions = By.cssSelector(".google-symbols.Cw1rxd");
 	private final By searchButton = By.id("searchbox-searchbutton");
 	private final By headline = By.xpath("(//input[@aria-label='Destino Dublin, Irlanda'])[1]");
@@ -45,19 +44,15 @@ public class PrimeiroTeste {
 
 		Assert.assertTrue(mapsTitle.contains("Maps"));
 
-		// 1. Wait to load the search box and after fill Dublin
-		wait = new WebDriverWait(driver, Duration.ofSeconds(20))
+		new WebDriverWait(driver, Duration.ofSeconds(20))
 				.until(ExpectedConditions.elementToBeClickable(searchInput));
 		driver.findElement(searchInput).sendKeys("Dublin");
 
-		// 2. Wait to load the search button and after click on this button
-		wait = new WebDriverWait(driver, Duration.ofSeconds(20))
+		new WebDriverWait(driver, Duration.ofSeconds(20))
 				.until(ExpectedConditions.elementToBeClickable(searchButton));
 		driver.findElement(searchButton).click();
 
-
-		// Wait for the first "google-symbols Cw1rxd" element to be clickable
-		wait = new WebDriverWait(driver, Duration.ofSeconds(20))
+		new WebDriverWait(driver, Duration.ofSeconds(20))
 				.until(ExpectedConditions.elementToBeClickable(directions));
 
 		// Now, get all "google-symbols Cw1rxd" elements
